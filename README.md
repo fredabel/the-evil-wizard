@@ -7,11 +7,11 @@ The **Defeat the Evil Wizard** is a Python-based game where players can choose f
 
 ## Features
 - **Character Classes**:
-  - **Warrior**: A strong melee fighter with abilities like `Double Damage` and `Critical Strike`.
+  - **Warrior**: A strong melee fighter with abilities like `Double Strike` and `Critical Strike`.
   - **Mage**: A powerful spellcaster with abilities like `Shadow Fire` and `Arcane Shield`.
   - **Archer**: A ranged attacker with abilities like `Quick Shot` and `Evasion`.
   - **Paladin**: A holy warrior with abilities like `Holy Strike` and `Divine Shield`.
-  - **Evil Wizard**: A regenerating opponent with the ability to heal itself during combat.
+  - **Evil Wizard**: A regenerating opponent with the ability to heal itself during combat and a chance to use special ability.
 
 - **Dynamic Combat**:
   - Randomized attack power for unpredictability.
@@ -23,23 +23,24 @@ The **Defeat the Evil Wizard** is a Python-based game where players can choose f
 ## Classes and Abilities
 
 ### Warrior
-- **Double Damage**: Deals double the Warrior's attack power as damage.
+- **Double Strike**: Deals double the Warrior's attack power as damage.
 - **Critical Strike**: Has a chance to deal 100%-200% of the Warrior's attack power as damage.
 
 ### Mage
-- **Shadow Fire**: Heals the Mage by 20% of their attack power and deals an additional 20% as bonus damage to the opponent.
+- **Shadow Fire**: Heals the Mage by 20% of their basic damage and deals additional 20% as bonus damage.
 - **Arcane Shield**: Reduces damage taken by 50% for the next turn.
 
 ### Archer
-- **Quick Shot**: A powerful ranged attack that deals high damage.
-- **Evasion**: Allows the Archer to evade the next attack completely.
+- **Quick Shot**: Deals 50 pure damage.
+- **Evasion**: Allows the Archer to evade the next attack.
 
 ### Paladin
-- **Holy Strike**: Deals extra damage by adding 20 to the Paladin's attack power.
+- **Holy Strike**: Deals extra damage by adding 20 to the Paladin's basic damage.
 - **Divine Shield**: Evades the next attack completely.
 
 ### Evil Wizard
 - **Regenerate**: Restores 5 health points each turn, up to the maximum health.
+- **Dark Blast**: Deals 50% bonus damage 
 
 ---
 
@@ -68,7 +69,6 @@ The **Defeat the Evil Wizard** is a Python-based game where players can choose f
 
 ## Future Enhancements
 - Add more character classes with unique abilities.
-- Implement multiplayer functionality.
-- Add a leveling system to improve character stats over time.
-
+- Create a graphical user interface (GUI) using a web-based front end.
+- Enhance the user experience with visual elements such as health bars, animations, and interactive menus.
 
