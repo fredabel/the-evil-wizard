@@ -1,32 +1,31 @@
-from character import *
-
+from character_class_map import *
+import random
 # Function to create player character based on user input
 def create_character():
-    print("Choose your character class:")
-    print("1. Warrior")
-    print("2. Mage")
-    print("3. Archer")  # Add Archer
-    print("4. Paladin")  # Add Paladin
+    print("Choose your character:")
+    for key, character in enumerate(CHARACTER_LIST, 1):
+        # Iterate CHARACTER_LIST
+        print(f"{key}. {character}")
     
-    class_choice = input("Enter the number of your class choice: ")
-    name = input("Enter your character's name: ")
+    choice = input("Enter the number of your class choice: ")
+    hero_choice = int(choice) - 1
 
-    if class_choice == '1':
-        return Warrior(name)
-    elif class_choice == '2':
-        return Mage(name)
-    elif class_choice == '3':
-        # Add Archer class here
-        return Archer(name)
-    elif class_choice == '4':
-        # Add Paladin class here
-         return Paladin(name)
+    if choice.isdigit() and 0 <= hero_choice < len(CHARACTER_LIST):
+        # Get the class from the CHARACTER_CLASS_MAP dictionary
+        hero_class = CHARACTER_CLASS_MAP[CHARACTER_LIST[hero_choice]]
+        # Display the character selected
+        print(f"You choose {CHARACTER_LIST[hero_choice]}!")
+        name = input("Enter your character's name: ")
+        return hero_class(name)
     else:
-        print("Invalid choice. Defaulting to Warrior.")
-        return Warrior(name)
+        #Proceed to default character
+        print(f"Invalid choice. Defaulting to {CHARACTER_LIST[0]}.")
+        name = input("Enter your character's name: ")
+        return default_class(name)
 
 # Battle function with user menu for actions
 def battle(player, wizard):
+    
     while wizard.health > 0 and player.health > 0:
         print("\n--- Your Turn ---")
         print("1. Attack")
@@ -39,32 +38,52 @@ def battle(player, wizard):
 
         if choice == '1':
             player.attack(wizard)
+            # Evil Wizard's turn to attack and regenerate
+            if wizard.health > 0:
+                wizard.regenerate()
+                wizard_attack(player, wizard) 
         elif choice == '2':
             # Call the special ability here
-            player.special_ability(wizard)
+            while True: 
+                ability = player.special_ability(wizard)
+                if ability:
+                    #If valid ability input
+                    if wizard.health > 0:
+                        wizard.regenerate()
+                        wizard_attack(player, wizard) 
+                    break        
         elif choice == '3':
             # Call the heal method here
             player.heal()
+            # Evil Wizard's turn to attack and regenerate
+            if wizard.health > 0:
+                wizard.regenerate()
+                wizard_attack(player, wizard)
         elif choice == '4':
-            player.display_stats()
+            player.display_stats() #Display player's stats
+            wizard.display_stats() #Display wizard's stats
         elif choice == '5':
             return False
         else:
             print("Invalid choice, try again.")
             continue
-
-        # Evil Wizard's turn to attack and regenerate
-        if wizard.health > 0:
-            wizard.regenerate()
-            wizard.attack(player)
-
+        
         if player.health <= 0:
-            print(f"{player.name} has been defeated!")
+            print(f"{player.name} has been defeated by {wizard.name}. Game Over. Try again!")
             break
 
     if wizard.health <= 0:
-        print(f"The wizard {wizard.name} has been defeated by {player.name}!")
+        print(f"Congratulations! {player.name} has defeated {wizard.name}! You are victorious!\n")
 
+#Apply the wizard attack method get a chance to burst
+def wizard_attack(player, wizard):
+    chance = random.randint(1,10)
+    # print(chance)
+    if 5 <= chance:
+        wizard.dark_blast(player) # Call the dark_blast ability
+    else:
+        wizard.attack(player)
+        
 # Main function to handle the flow of the game
 def main():
     while True:
