@@ -7,14 +7,13 @@ def create_character():
         # Iterate CHARACTER_LIST
         print(f"{key}. {character}")
     
-    choice = input("Enter the number of your class choice: ")
-    hero_choice = int(choice) - 1
+    hero_choice = input("Enter the number of your class choice: ")
 
-    if choice.isdigit() and 0 <= hero_choice < len(CHARACTER_LIST):
+    if hero_choice.isdigit() and 0 <= int(hero_choice) - 1 < len(CHARACTER_LIST):
         # Get the class from the CHARACTER_CLASS_MAP dictionary
-        hero_class = CHARACTER_CLASS_MAP[CHARACTER_LIST[hero_choice]]
+        hero_class = CHARACTER_CLASS_MAP[CHARACTER_LIST[int(hero_choice) - 1]]
         # Display the character selected
-        print(f"You choose {CHARACTER_LIST[hero_choice]}!")
+        print(f"You choose {CHARACTER_LIST[int(hero_choice) - 1]}!")
         name = input("Enter your character's name: ")
         return hero_class(name)
     else:

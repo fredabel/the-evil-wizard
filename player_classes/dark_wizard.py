@@ -10,13 +10,13 @@ class EvilWizard(Character):
         self.health += WIZARD_HEAL 
         if self.health > self.max_health:
             self.health = self.max_health
-        print(f"{self.name} regenerates {WIZARD_HEAL} health! Current health: {self.health}/{self.max_health}")
+        print(f"\n{self.name} regenerates {WIZARD_HEAL} health! Current health: {self.health}/{self.max_health}")
    
     #Evil Wizard deals 50% bonus damage
     def dark_blast(self,opponent):
         damage = int(self.basic_damage() * 1.5)
         opponent.health -= damage   
-        print(f"\n{self.name} uses Dark Blast (deals 50% bonus damage) on {opponent.name}! for {damage} damage!")
+        print(f"{self.name} uses Dark Blast (deals 50% bonus damage) on {opponent.name}! for {damage} damage!")
         print(f"{opponent.name} Current Stats - Health: {max(0, opponent.health)}/{opponent.max_health}") 
 
     
