@@ -18,5 +18,19 @@ class EvilWizard(Character):
         opponent.health -= damage   
         print(f"{self.name} uses Dark Blast (deals 50% bonus damage) on {opponent.name}! for {damage} damage!")
         print(f"{opponent.name} Current Stats - Health: {max(0, opponent.health)}/{opponent.max_health}") 
+        
+        # Check if the opponent has a 'evadeNextAttack' attribute
+        if hasattr(opponent, 'evadeNextAttack') and opponent.evadeNextAttack:
+            print(f"\n{self.name} attacks {opponent.name}, but {opponent.name} evades the attack!")
+            opponent.evadeNextAttack = False
+            return
+        # Check if the opponent has a 'arcaneShield' attribute
+        if hasattr(opponent, 'arcaneShield') and opponent.arcaneShield:
+            reduced_damage = damage // 2  # Reduce damage by 50%
+            opponent.health -= reduced_damage
+            print(f"\n{self.name} attacks {opponent.name}, with {damage} damage but Arcane Shield reduces the damage by 50%! Damage dealt: {reduced_damage}")
+            opponent.arcaneShield = False  
+            return
+        
 
     
